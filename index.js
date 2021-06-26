@@ -2,8 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const fetch = require('node-fetch');
 
+const dotenv = require("dotenv");
 const url = "https://iporesult.cdsc.com.np/result/result/check";
 const app = express();
+
+dotenv.config({path: "./config.env"});
+
 app.use(cors());
 app.use(express.urlencoded());
 app.use(express.json());
@@ -63,4 +67,6 @@ app.post('/result', async (req, res) => {
 
 })
 
-app.listen(5000, '0.0.0.0', () => console.log('server running'))
+
+const port = process.env.PORT || 5000;
+app.listen(port, '0.0.0.0', () => console.log('server running'))
